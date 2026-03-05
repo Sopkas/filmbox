@@ -1,0 +1,330 @@
+/* ---- Library Page ---- */
+
+.lib-page {
+    --lib-bg: #d9d9d9;
+    --lib-text: #050505;
+    --lib-line: rgba(0, 0, 0, 0.15);
+    --lib-accent: #ff5c5c;
+
+    background-color: var(--lib-bg);
+    color: var(--lib-text);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
+    min-height: 100vh;
+}
+
+.lib-aura {
+    position: absolute;
+    width: 38vw;
+    height: 38vw;
+    background: radial-gradient(circle, rgba(255, 92, 92, 0.4) 0%, rgba(255, 92, 92, 0) 70%);
+    filter: blur(50px);
+    border-radius: 50%;
+    pointer-events: none;
+    top: 6%;
+    left: 10%;
+    animation: lib-breathe 9s infinite alternate ease-in-out;
+}
+
+@keyframes lib-breathe {
+    0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.35;
+    }
+
+    100% {
+        transform: scale(1.12) translate(20px, -15px);
+        opacity: 0.55;
+    }
+}
+
+.lib-container {
+    width: min(1200px, 92vw);
+    margin: 0 auto;
+    padding: 7rem 0 4rem;
+    display: grid;
+    gap: 1.4rem;
+}
+
+/* ---- Header ---- */
+
+.lib-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.lib-kicker {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    opacity: 0.6;
+    margin: 0;
+}
+
+.lib-header h1 {
+    margin: 0.35rem 0 0;
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+}
+
+.lib-dot {
+    color: var(--lib-accent);
+}
+
+.lib-sub {
+    margin: 0.55rem 0 0;
+    color: rgba(5, 5, 5, 0.65);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+}
+
+.lib-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-shrink: 0;
+    padding-top: 0.6rem;
+}
+
+.lib-link {
+    border: 1px solid var(--lib-text);
+    padding: 0.55rem 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.72rem;
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lib-link:hover {
+    background: var(--lib-text);
+    color: #fff;
+}
+
+/* ---- Filter bar ---- */
+
+.lib-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--lib-line);
+    padding: 0.65rem 1rem;
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.lib-filter-input {
+    flex: 1;
+    border: 0;
+    border-bottom: 1px solid rgba(5, 5, 5, 0.3);
+    border-radius: 0;
+    background: transparent;
+    color: var(--lib-text);
+    padding: 0.4rem 0.2rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.88rem;
+}
+
+.lib-filter-input:focus {
+    outline: none;
+    border-bottom-color: var(--lib-text);
+}
+
+.lib-filter-input::placeholder {
+    color: rgba(5, 5, 5, 0.4);
+}
+
+.lib-filter-count {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    color: rgba(5, 5, 5, 0.55);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.lib-hint {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: rgba(5, 5, 5, 0.55);
+}
+
+/* ---- Card grid ---- */
+
+.lib-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 1rem;
+}
+
+.lib-card {
+    border: 1px solid var(--lib-line);
+    background: rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.lib-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.lib-card-poster-wrap {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+}
+
+.lib-card-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.lib-card-no-poster {
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.06);
+    color: rgba(5, 5, 5, 0.4);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.lib-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 5, 0.82);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.26s ease;
+}
+
+.lib-card:hover .lib-card-overlay {
+    opacity: 1;
+}
+
+.lib-card-comment {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    text-align: center;
+    margin: 0;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.lib-card-comment-empty {
+    opacity: 0.45;
+    font-style: italic;
+}
+
+/* ---- Card body ---- */
+
+.lib-card-body {
+    padding: 0.65rem 0.7rem 0.75rem;
+    display: grid;
+    gap: 0.3rem;
+}
+
+.lib-card-title {
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lib-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.lib-card-year {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.68rem;
+    color: rgba(5, 5, 5, 0.55);
+    letter-spacing: 0.04em;
+}
+
+.lib-stars {
+    display: inline-flex;
+    gap: 0.05em;
+    letter-spacing: 0;
+    font-size: 0.85rem;
+}
+
+.lib-star-icon {
+    display: inline-block;
+    position: relative;
+    line-height: 1;
+}
+
+.lib-star-full {
+    color: #c01f1f;
+}
+
+.lib-star-empty {
+    color: rgba(5, 5, 5, 0.2);
+}
+
+.lib-star-half {
+    position: relative;
+    display: inline-block;
+}
+
+.lib-star-half .lib-star-bg {
+    color: rgba(5, 5, 5, 0.2);
+}
+
+.lib-star-half .lib-star-fg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #c01f1f;
+    clip-path: inset(0 50% 0 0);
+}
+
+/* ---- Mobile ---- */
+
+@media (max-width: 760px) {
+    .lib-container {
+        padding: 5.5rem 0 3rem;
+        width: min(1100px, 95vw);
+    }
+
+    .lib-header {
+        flex-direction: column;
+    }
+
+    .lib-header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .lib-header h1 {
+        font-size: 10vw;
+    }
+
+    .lib-grid {
+        grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+        gap: 0.7rem;
+    }
+
+    .lib-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+}

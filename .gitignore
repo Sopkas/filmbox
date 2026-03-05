@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+coverage/
+
+.tmpgo/
+npm-cache/
+**/npm-cache/
+**/_tmp_*
+tmp-test.txt

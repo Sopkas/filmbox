@@ -1,0 +1,59 @@
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(40) NOT NULL UNIQUE,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS movies (
+  id SERIAL PRIMARY KEY,
+  external_id INTEGER UNIQUE,
+  title VARCHAR(255) NOT NULL,
+  poster_url TEXT,
+  year INTEGER,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  CONSTRAINT movies_year_check CHECK (year IS NULL OR (year >= 1888 AND year <= 2100))
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS movies_manual_unique_idx
+ON movies (LOWER(title), COALESCE(year, -1))
+WHERE external_id IS NULL;
+
+CREATE TABLE IF NOT EXISTS user_reviews (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  movie_id INTEGER NOT NULL REFERENCES movies(id) ON DELETE CASCADE,
+  rating SMALLINT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  comment TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE (user_id, movie_id)
+);
+
+CREATE TABLE IF NOT EXISTS user_top10 (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  review_id INTEGER NOT NULL REFERENCES user_reviews(id) ON DELETE CASCADE,
+  position SMALLINT NOT NULL CHECK (position BETWEEN 1 AND 10),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE (user_id, review_id)
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS user_top10_user_position_idx
+ON user_top10 (user_id, position);
+
+CREATE TABLE IF NOT EXISTS user_watch_later (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  movie_id INTEGER NOT NULL REFERENCES movies(id) ON DELETE CASCADE,
+  added_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (user_id, movie_id)
+);
+
+CREATE TABLE IF NOT EXISTS user_abandoned (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  movie_id INTEGER NOT NULL REFERENCES movies(id) ON DELETE CASCADE,
+  added_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (user_id, movie_id)
+);
