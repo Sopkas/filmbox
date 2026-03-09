@@ -1,4 +1,4 @@
-﻿.cine-page {
+.cine-page {
   --bg-color: #d9d9d9;
   --text-color: #050505;
   --accent-red: #ff5c5c;
@@ -23,58 +23,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.cine-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 3rem;
-  border-bottom: 1px solid var(--line-color);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  background: rgba(217, 217, 217, 0.9);
-  backdrop-filter: blur(5px);
-}
-
-.cine-brand {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
-
-.cine-menu-trigger {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-  width: 32px;
-  border: 0;
-  background: transparent;
-}
-
-.cine-line {
-  height: 2px;
-  background: black;
-  width: 100%;
-  transition: width 0.3s ease;
-}
-
-.cine-line:first-child {
-  width: 100%;
-}
-
-.cine-line:last-child {
-  width: 60%;
-  align-self: flex-end;
-}
-
-.cine-menu-trigger:hover .cine-line:last-child {
-  width: 100%;
-}
-
 .cine-hero {
-  padding: 12rem 3rem 6rem 3rem;
+  padding: 9.5rem 3rem 6rem 3rem;
   position: relative;
   min-height: 100vh;
   display: flex;

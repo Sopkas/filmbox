@@ -1,18 +1,26 @@
 import { Router } from "express";
+import { z } from "zod";
+import { validate } from "../middleware/validate.js";
 import { searchPoiskkinoMovies } from "../services/poiskkino.js";
 
 const router = Router();
 
-router.get("/search", async (req, res, next) => {
+const searchQuerySchema = z.object({
+  q: z.string().trim().min(2).max(120)
+});
+
+router.get("/search", validate({ query: searchQuerySchema }), async (req, res, next) => {
   try {
-    const q = String(req.query.q || "").trim();
-
-    if (q.length < 2) {
-      return res.status(400).json({ error: "q must be at least 2 characters" });
-    }
-
-    const movies = await searchPoiskkinoMovies(q);
-    return res.json({ results: movies });
+    const { q } = req.query;
+    const { results, meta } = await searchPoiskkinoMovies(q);
+    req.log?.info("movies.search.success", {
+      queryLength: q.length,
+      results: results.length,
+      source: meta.source,
+      cacheHit: meta.cacheHit,
+      throttleDelayMs: meta.throttleDelayMs
+    });
+    return res.json({ results, meta });
   } catch (error) {
     return next(error);
   }

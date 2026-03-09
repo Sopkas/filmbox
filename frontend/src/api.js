@@ -12,11 +12,17 @@ async function request(path, options = {}, token) {
 
   const response = await fetch(`${API_BASE_URL}${path}`, {
     ...options,
-    headers
+    headers,
+    credentials: "include"
   });
 
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
+    if (response.status === 401 && !path.startsWith("/auth/")) {
+      localStorage.removeItem("kinopulse_token");
+      localStorage.removeItem("kinopulse_user");
+      throw new Error("Сессия истекла. Войдите снова.");
+    }
     throw new Error(payload.error || "Request failed");
   }
 
@@ -37,9 +43,37 @@ export function signIn(credentials) {
   });
 }
 
+export function signInWithGoogle(idToken) {
+  return request("/auth/google", {
+    method: "POST",
+    body: JSON.stringify({ idToken })
+  });
+}
+
+export function signOut(token) {
+  return request(
+    "/auth/logout",
+    {
+      method: "POST"
+    },
+    token
+  );
+}
+
 export function searchMovies(query) {
   const params = new URLSearchParams({ q: query });
   return request(`/movies/search?${params.toString()}`);
+}
+
+export function recommendMovieWithAi(payload, token) {
+  return request(
+    "/recommendations/movie",
+    {
+      method: "POST",
+      body: JSON.stringify(payload)
+    },
+    token
+  );
 }
 
 export function saveReview(moviePayload, token) {
@@ -67,6 +101,33 @@ export function saveManualReview(payload, token) {
 export function getProfileReviews(params, token) {
   const query = new URLSearchParams(params);
   return request(`/reviews/me?${query.toString()}`, {}, token);
+}
+
+export function getReviewByMovieId(movieId, token) {
+  return request(`/reviews/me/movie/${movieId}`, {}, token);
+}
+
+export function getReviewByExternalId(externalId, token) {
+  return request(`/reviews/me/external/${externalId}`, {}, token);
+}
+
+export function updateReview(reviewId, payload, token) {
+  return request(
+    `/reviews/${reviewId}`,
+    {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    },
+    token
+  );
+}
+
+export function deleteReview(reviewId, token) {
+  return request(
+    `/reviews/${reviewId}`,
+    { method: "DELETE" },
+    token
+  );
 }
 
 export function saveTop10(orderedReviewIds, token) {
@@ -169,6 +230,17 @@ export function deleteCollection(id, token) {
   return request(`/collections/${id}`, { method: "DELETE" }, token);
 }
 
+export function updateCollectionName(id, name, token) {
+  return request(
+    `/collections/${id}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({ name })
+    },
+    token
+  );
+}
+
 export function addMovieToCollection(collectionId, movie, token) {
   return request(
     `/collections/${collectionId}/add`,
@@ -184,6 +256,17 @@ export function removeMovieFromCollection(collectionId, movieId, token) {
   return request(
     `/collections/${collectionId}/movies/${movieId}`,
     { method: "DELETE" },
+    token
+  );
+}
+
+export function reorderCollectionMovies(collectionId, movieIds, token) {
+  return request(
+    `/collections/${collectionId}/order`,
+    {
+      method: "PUT",
+      body: JSON.stringify({ movieIds })
+    },
     token
   );
 }

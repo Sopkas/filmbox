@@ -1,7 +1,8 @@
-﻿---
+---
 tracker:
   kind: linear
-  project_slug: "REPLACE_WITH_LINEAR_PROJECT_SLUG"
+  api_key: $LINEAR_API_KEY
+  project_slug: "filmbox-5a5949382108"
   active_states:
     - Todo
     - In Progress
@@ -19,12 +20,14 @@ workspace:
   root: D:/symphony-workspaces/filmBebs
 hooks:
   after_create: |
-    if [ -n "$SOURCE_REPO_URL" ]; then
-      git clone --depth 1 "$SOURCE_REPO_URL" .
+    REPO_URL="${SOURCE_REPO_URL:-https://github.com/Sopkas/filmbox.git}"
+
+    if git clone --depth 1 "$REPO_URL" .; then
+      echo "Cloned from $REPO_URL"
     else
       LOCAL_SOURCE_PATH="${LOCAL_SOURCE_PATH:-/d/portfolio/filmBebs}"
       if [ ! -d "$LOCAL_SOURCE_PATH" ]; then
-        echo "Set SOURCE_REPO_URL or LOCAL_SOURCE_PATH. Current LOCAL_SOURCE_PATH is invalid: $LOCAL_SOURCE_PATH"
+        echo "Git clone failed and LOCAL_SOURCE_PATH is invalid: $LOCAL_SOURCE_PATH"
         exit 1
       fi
 
@@ -166,3 +169,6 @@ Handoff quality bar:
   - Validation results.
   - Blockers (if any).
 - Do not include next steps for user.
+
+
+

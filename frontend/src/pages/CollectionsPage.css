@@ -9,56 +9,50 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     min-height: 100vh;
     position: relative;
-    overflow: hidden;
-}
-
-.coll-container {
-    width: min(1160px, 92vw);
-    margin: 0 auto;
-    padding: 7.4rem 0 4rem;
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    height: 100vh;
-    box-sizing: border-box;
 }
 
 .coll-aura {
     position: absolute;
     width: 42vw;
     height: 42vw;
-    background: radial-gradient(circle, rgba(255, 92, 92, 0.48) 0%, rgba(255, 92, 92, 0) 70%);
-    filter: blur(46px);
+    background: radial-gradient(circle, rgba(255, 92, 92, 0.35) 0%, rgba(255, 92, 92, 0) 72%);
+    filter: blur(56px);
     border-radius: 50%;
     pointer-events: none;
-    top: 8%;
-    right: 11%;
+    top: 2%;
+    right: 4%;
 }
 
-.coll-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    flex-shrink: 0;
+.coll-container {
+    width: min(1320px, 94vw);
+    margin: 0 auto;
+    padding: 7.4rem 0 4rem;
+    display: grid;
+    gap: 1.1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.coll-hero {
+    border: 1px solid var(--coll-line);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 1rem;
 }
 
 .coll-kicker {
     font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
-    opacity: 0.65;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
     margin: 0;
 }
 
-.coll-header h1 {
-    margin: 0.4rem 0 0;
-    font-size: clamp(2.2rem, 5vw, 4.2rem);
+.coll-hero h1 {
+    margin: 0.3rem 0 0;
+    font-size: clamp(2.3rem, 5.2vw, 4.4rem);
+    line-height: 0.95;
     font-weight: 400;
-    letter-spacing: -0.03em;
-    line-height: 1;
+    letter-spacing: -0.04em;
 }
 
 .coll-dot {
@@ -66,74 +60,58 @@
 }
 
 .coll-sub {
-    margin: 0.4rem 0 0;
-    color: rgba(5, 5, 5, 0.7);
+    margin: 0.55rem 0 0;
+    color: rgba(5, 5, 5, 0.65);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
 }
 
-.coll-header-actions {
-    display: flex;
-    gap: 0.6rem;
-}
-
-.coll-link {
-    border: 1px solid var(--coll-text);
-    padding: 0.57rem 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.72rem;
-    color: inherit;
-    text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.coll-link:hover {
-    background: var(--coll-text);
-    color: #fff;
-}
-
-.coll-workspace {
-    display: flex;
-    gap: 1.5rem;
-    flex: 1;
-    min-height: 0;
-    /* Important for flex child scrolling */
-}
-
-/* Sidebar */
-.coll-sidebar {
-    width: 320px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    border-right: 1px solid var(--coll-line);
-    padding-right: 1.5rem;
-    overflow-y: auto;
+.coll-create-panel {
+    border: 1px solid var(--coll-line);
+    background: rgba(255, 255, 255, 0.4);
+    padding: 0.95rem 1rem;
+    display: grid;
+    gap: 0.5rem;
 }
 
 .coll-create-form {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.65rem;
+    align-items: center;
 }
 
 .coll-create-form input {
     flex: 1;
-    padding: 0.6rem 0.8rem;
-    border: 1px solid var(--coll-text);
+    border: 0;
+    border-bottom: 1px solid rgba(5, 5, 5, 0.28);
     background: transparent;
     color: var(--coll-text);
-    font-size: 0.9rem;
+    padding: 0.5rem 0.2rem;
+    font-family: inherit;
+    font-size: 0.92rem;
+}
+
+.coll-create-form input:focus {
     outline: none;
-    border-radius: 0;
+    border-bottom-color: var(--coll-text);
 }
 
 .coll-create-form button {
-    width: 40px;
+    border: 1px solid var(--coll-text);
+    background: transparent;
+    color: var(--coll-text);
+    padding: 0.48rem 0.85rem;
+    font-size: 0.73rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.coll-create-form button:hover {
     background: var(--coll-text);
     color: #fff;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
 }
 
 .coll-create-form button:disabled {
@@ -141,339 +119,201 @@
     cursor: not-allowed;
 }
 
+.coll-create-hint,
 .coll-hint {
-    color: rgba(5, 5, 5, 0.6);
-    font-size: 0.9rem;
-}
-
-.coll-list {
-    list-style: none;
-    padding: 0;
     margin: 0;
+    color: rgba(5, 5, 5, 0.58);
+    font-size: 0.82rem;
+}
+
+.coll-action-error {
+    margin: 0;
+    color: #9f1f1f;
+    font-size: 0.82rem;
+}
+
+.coll-error-state {
+    border: 1px solid rgba(176, 33, 33, 0.35);
+    background: rgba(255, 255, 255, 0.4);
+    padding: 1rem;
     display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.coll-list li {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.coll-list-btn {
-    flex: 1;
-    background: transparent;
-    border: 1px solid var(--coll-line);
-    padding: 0.8rem;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.coll-list-btn:hover {
-    border-color: rgba(5, 5, 5, 0.4);
-}
-
-.coll-list-btn.active {
-    background: rgba(255, 255, 255, 0.5);
-    border-color: var(--coll-text);
-}
-
-.coll-list-info {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
 }
 
-.coll-list-info strong {
-    font-weight: 500;
-    font-size: 1.1rem;
+.coll-error-state p {
+    margin: 0;
+    color: #9f1f1f;
+    font-size: 0.86rem;
 }
 
-.coll-list-info span {
-    font-size: 0.75rem;
-    color: rgba(5, 5, 5, 0.6);
-}
-
-.coll-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.3rem;
-    height: 60px;
-}
-
-.coll-preview-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.coll-preview-empty {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px dashed rgba(0, 0, 0, 0.2);
-}
-
-.coll-delete-btn {
-    width: 30px;
+.coll-error-state button {
+    border: 1px solid #9f1f1f;
     background: transparent;
-    border: 1px solid transparent;
-    color: #c01f1f;
-    font-size: 1.2rem;
+    color: #9f1f1f;
+    padding: 0.42rem 0.68rem;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     cursor: pointer;
 }
 
-.coll-delete-btn:hover {
-    background: rgba(192, 31, 31, 0.1);
+.coll-error-state button:hover {
+    background: #9f1f1f;
+    color: #fff;
 }
 
-/* Main Area */
-.coll-main {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.35);
+.coll-empty {
     border: 1px solid var(--coll-line);
-    display: flex;
-    flex-direction: column;
+    background: rgba(255, 255, 255, 0.35);
+    padding: 2.8rem 1rem;
+    text-align: center;
+    color: rgba(5, 5, 5, 0.56);
+}
+
+.coll-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+}
+
+.coll-card {
+    border: 1px solid var(--coll-line);
+    background: rgba(255, 255, 255, 0.42);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.coll-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
+}
+
+.coll-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.coll-cover-wrap {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background: rgba(0, 0, 0, 0.06);
     overflow: hidden;
 }
 
-.coll-main-empty {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(5, 5, 5, 0.5);
-    font-size: 1.1rem;
-}
-
-.coll-detail {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.coll-detail-header {
-    padding: 1.5rem;
-    border-bottom: 1px solid var(--coll-line);
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-}
-
-.coll-detail-header h2 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 400;
-}
-
-.coll-detail-header p {
-    margin: 0;
-    color: rgba(5, 5, 5, 0.6);
-}
-
-.coll-search-box {
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--coll-line);
-    position: relative;
-}
-
-.coll-search-input {
+.coll-cover-img {
     width: 100%;
-    border: 0;
-    border-bottom: 1px solid rgba(5, 5, 5, 0.3);
-    background: transparent;
-    color: var(--coll-text);
-    padding: 0.6rem 0.2rem;
-    font-size: 1rem;
-    outline: none;
-}
-
-.coll-search-input:focus {
-    border-bottom-color: var(--coll-text);
-}
-
-.coll-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 1.5rem;
-    right: 1.5rem;
-    background: #fff;
-    border: 1px solid var(--coll-line);
-    border-top: none;
-    max-height: 250px;
-    overflow-y: auto;
-    z-index: 10;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.coll-search-result-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.6rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.coll-search-result-item .movie-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.coll-search-result-item img {
-    width: 40px;
-    height: 60px;
+    height: 100%;
     object-fit: cover;
-}
-
-.coll-search-result-item .poster-empty {
-    width: 40px;
-    height: 60px;
-    background: #eee;
-    font-size: 0.5rem;
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
-.coll-search-result-item strong {
     display: block;
 }
 
-.coll-search-result-item span {
-    font-size: 0.8rem;
-    color: #666;
-}
-
-.coll-add-btn {
-    background: transparent;
-    border: 1px solid var(--coll-text);
-    padding: 0.4rem 0.8rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-}
-
-.coll-add-btn:hover {
-    background: var(--coll-text);
-    color: #fff;
-}
-
-.coll-movies-grid {
-    flex: 1;
-    padding: 1.5rem;
-    overflow-y: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1.5rem;
-    align-content: start;
-}
-
-.coll-movie-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.coll-movie-poster-wrap {
-    position: relative;
-    aspect-ratio: 2/3;
-    width: 100%;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.05);
-}
-
-.coll-movie-poster {
+.coll-cover-empty {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    display: grid;
+    place-items: center;
+    color: rgba(5, 5, 5, 0.4);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
-.coll-movie-no-poster {
+.coll-card-body {
+    padding: 0.75rem 0.9rem 0.56rem;
+    display: grid;
+    gap: 0.32rem;
+}
+
+.coll-card-title {
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.coll-card-meta {
+    color: rgba(5, 5, 5, 0.57);
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.coll-open-cta {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: rgba(5, 5, 5, 0.4);
-    font-size: 0.8rem;
-    background: rgba(0, 0, 0, 0.05);
+    justify-content: space-between;
+    gap: 0.4rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0.6rem 0.9rem 0.72rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: rgba(5, 5, 5, 0.75);
 }
 
-.coll-movie-remove {
+.coll-delete-btn {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    width: 28px;
-    height: 28px;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border: none;
-    font-size: 1.2rem;
-    line-height: 1;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    display: flex;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.93);
+    color: #b02121;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    padding: 0;
+    line-height: 1;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 3;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.coll-movie-poster-wrap:hover .coll-movie-remove {
-    opacity: 1;
+.coll-delete-btn svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+    flex-shrink: 0;
+    pointer-events: none;
 }
 
-.coll-movie-remove:hover {
-    background: #c01f1f;
+.coll-delete-btn:hover {
+    background: #b02121;
+    border-color: #b02121;
+    color: #fff;
 }
 
-.coll-movie-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.coll-movie-body strong {
-    font-size: 0.95rem;
-    font-weight: 500;
-    line-height: 1.2;
-}
-
-.coll-movie-body span {
-    font-size: 0.8rem;
-    color: rgba(5, 5, 5, 0.6);
+.coll-delete-btn:disabled {
+    opacity: 0.5;
+    cursor: wait;
 }
 
 @media (max-width: 760px) {
     .coll-container {
-        padding: 6.8rem 0 3rem;
+        width: min(1200px, 96vw);
+        padding: 6.3rem 0 2rem;
     }
 
-    .coll-header {
+    .coll-hero h1 {
+        font-size: 11vw;
+    }
+
+    .coll-create-form {
         flex-direction: column;
+        align-items: stretch;
     }
 
-    .coll-header-actions {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .coll-workspace {
-        flex-direction: column;
-    }
-
-    .coll-sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--coll-line);
-        padding-right: 0;
-        padding-bottom: 1.5rem;
-        max-height: 300px;
+    .coll-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 0.85rem;
     }
 }

@@ -1,0 +1,260 @@
+.ai-page {
+  --ai-bg: #d9d9d9;
+  --ai-text: #050505;
+  --ai-line: rgba(0, 0, 0, 0.15);
+  --ai-accent: #ff5c5c;
+
+  background-color: var(--ai-bg);
+  color: var(--ai-text);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+.ai-aura {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(255, 92, 92, 0.38) 0%, rgba(255, 92, 92, 0) 72%);
+  filter: blur(52px);
+  border-radius: 50%;
+  pointer-events: none;
+  top: 3%;
+  right: 8%;
+}
+
+.ai-container {
+  width: min(1200px, 94vw);
+  margin: 0 auto;
+  padding: 7.4rem 0 3.5rem;
+  display: grid;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.ai-dot {
+  color: var(--ai-accent);
+}
+
+.ai-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.ai-field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.ai-field-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(5, 5, 5, 0.7);
+}
+
+.ai-field input,
+.ai-field textarea {
+  border: 0;
+  border-bottom: 1px solid rgba(5, 5, 5, 0.36);
+  background: transparent;
+  color: var(--ai-text);
+  padding: 0.5rem 0.2rem;
+  font-family: inherit;
+}
+
+.ai-field textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.ai-field input:focus,
+.ai-field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--ai-text);
+}
+
+.ai-field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ai-genre-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.ai-genre-chip {
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  background: transparent;
+  color: var(--ai-text);
+  padding: 0.34rem 0.56rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.ai-genre-chip.is-active,
+.ai-genre-chip:hover {
+  background: var(--ai-text);
+  color: #fff;
+}
+
+.ai-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ai-actions button {
+  border: 1px solid var(--ai-text);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ai-text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  padding: 0.42rem 0.68rem;
+}
+
+.ai-actions button:hover {
+  background: var(--ai-text);
+  color: #fff;
+}
+
+.ai-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ai-result-layout {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) 1fr;
+  gap: 1rem;
+}
+
+.ai-poster-wrap {
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.ai-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ai-no-poster {
+  display: grid;
+  place-items: center;
+  color: rgba(5, 5, 5, 0.45);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ai-result-copy h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  line-height: 1;
+  font-weight: 500;
+}
+
+.ai-meta-list {
+  margin: 0.8rem 0 0;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.ai-meta-list li {
+  display: grid;
+  gap: 0.16rem;
+  border-top: 1px solid var(--ai-line);
+  padding-top: 0.42rem;
+}
+
+.ai-meta-list span {
+  font-size: 0.72rem;
+  color: rgba(5, 5, 5, 0.62);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ai-overview {
+  margin: 1rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.ai-result-actions {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.45rem;
+  justify-items: start;
+}
+
+.ai-watch-later-btn {
+  border: 1px solid var(--ai-text);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ai-text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  padding: 0.42rem 0.68rem;
+}
+
+.ai-watch-later-btn:hover {
+  background: var(--ai-text);
+  color: #fff;
+}
+
+.ai-watch-later-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ai-inline-status {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+}
+
+.ai-inline-status.is-success {
+  color: #145d2b;
+}
+
+.ai-inline-status.is-error {
+  color: #9f1f1f;
+}
+
+@media (max-width: 840px) {
+  .ai-result-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-poster-wrap {
+    width: min(260px, 60vw);
+  }
+}
+
+@media (max-width: 760px) {
+  .ai-container {
+    width: 96vw;
+    padding: 6.4rem 0 2rem;
+  }
+
+  .ai-field-row {
+    grid-template-columns: 1fr;
+  }
+}

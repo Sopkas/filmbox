@@ -1,0 +1,129 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 250;
+  pointer-events: none;
+}
+
+.site-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -44px;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  color: #050505;
+  text-decoration: none;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  pointer-events: auto;
+  transition: top 0.16s ease;
+}
+
+.site-skip-link:focus {
+  top: 0.6rem;
+}
+
+.site-header-inner {
+  width: min(1320px, 94vw);
+  margin: 0.75rem auto 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: rgba(217, 217, 217, 0.92);
+  backdrop-filter: blur(6px);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.62rem 0.8rem;
+  pointer-events: auto;
+}
+
+.site-brand-wrap {
+  display: grid;
+  gap: 0.1rem;
+  align-items: start;
+}
+
+.site-brand {
+  color: #050505;
+  text-decoration: none;
+  font-size: 1.02rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.site-brand-meta {
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(5, 5, 5, 0.62);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.site-nav-link {
+  border: 1px solid transparent;
+  color: rgba(5, 5, 5, 0.74);
+  text-decoration: none;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  padding: 0.5rem 0.72rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.site-nav-link:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.45);
+  color: #050505;
+}
+
+.site-nav-link.is-active {
+  border-color: #050505;
+  color: #050505;
+  background: rgba(255, 255, 255, 0.66);
+}
+
+@media (max-width: 980px) {
+  .site-header-inner {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header-inner {
+    width: 96vw;
+    margin-top: 0.5rem;
+    padding: 0.55rem 0.62rem;
+  }
+
+  .site-nav {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    scrollbar-width: thin;
+  }
+
+  .site-nav-link {
+    white-space: nowrap;
+  }
+}

@@ -55,6 +55,11 @@
     gap: 1rem;
 }
 
+.lib-header-copy {
+    display: grid;
+    gap: 0.2rem;
+}
+
 .lib-kicker {
     font-size: 0.72rem;
     text-transform: uppercase;
@@ -83,31 +88,6 @@
     letter-spacing: 0.03em;
 }
 
-.lib-header-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-    flex-shrink: 0;
-    padding-top: 0.6rem;
-}
-
-.lib-link {
-    border: 1px solid var(--lib-text);
-    padding: 0.55rem 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.72rem;
-    color: inherit;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.lib-link:hover {
-    background: var(--lib-text);
-    color: #fff;
-}
-
 /* ---- Filter bar ---- */
 
 .lib-filter-bar {
@@ -117,6 +97,15 @@
     border: 1px solid var(--lib-line);
     padding: 0.65rem 1rem;
     background: rgba(255, 255, 255, 0.35);
+    position: sticky;
+    top: 5.4rem;
+    z-index: 18;
+}
+
+@media (max-width: 980px) {
+    .lib-filter-bar {
+        position: static;
+    }
 }
 
 .lib-filter-input {
@@ -152,6 +141,39 @@
     text-align: center;
     padding: 3rem 1rem;
     color: rgba(5, 5, 5, 0.55);
+}
+
+.lib-error-state {
+    border: 1px solid rgba(176, 33, 33, 0.35);
+    background: rgba(255, 255, 255, 0.48);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.lib-error-text {
+    margin: 0;
+    color: #9f1f1f;
+    font-size: 0.84rem;
+}
+
+.lib-retry-btn {
+    border: 1px solid #9f1f1f;
+    background: transparent;
+    color: #9f1f1f;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 0.65rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.lib-retry-btn:hover {
+    background: #9f1f1f;
+    color: #fff;
 }
 
 /* ---- Card grid ---- */
@@ -251,6 +273,56 @@
     gap: 0.4rem;
 }
 
+.lib-card-actions {
+    margin-top: 0.3rem;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0.35rem;
+}
+
+.lib-card-link-btn {
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    color: rgba(5, 5, 5, 0.88);
+    text-decoration: none;
+    text-align: center;
+    padding: 0.34rem 0.5rem;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.lib-card-link-btn:hover {
+    background: var(--lib-text);
+    color: #fff;
+}
+
+.lib-card-mini-btn {
+    border: 1px solid var(--lib-text);
+    background: transparent;
+    color: var(--lib-text);
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.34rem 0.5rem;
+    cursor: pointer;
+}
+
+.lib-card-mini-btn:hover {
+    background: var(--lib-text);
+    color: #fff;
+}
+
+.lib-card-mini-btn-danger {
+    border-color: rgba(159, 31, 31, 0.78);
+    color: #9f1f1f;
+}
+
+.lib-card-mini-btn-danger:hover {
+    background: #9f1f1f;
+    border-color: #9f1f1f;
+    color: #fff;
+}
+
 .lib-card-year {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.68rem;
@@ -296,6 +368,133 @@
     clip-path: inset(0 50% 0 0);
 }
 
+.lib-load-more-wrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.5rem;
+}
+
+.lib-load-more-btn {
+    border: 1px solid var(--lib-text);
+    background: transparent;
+    color: var(--lib-text);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.46rem 0.72rem;
+    cursor: pointer;
+}
+
+.lib-load-more-btn:hover {
+    background: var(--lib-text);
+    color: #fff;
+}
+
+.lib-load-more-btn:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.lib-edit-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.lib-edit-modal {
+    width: min(420px, 100%);
+    border: 1px solid var(--lib-text);
+    background: var(--lib-bg);
+    display: grid;
+    gap: 0.8rem;
+    padding: 1rem;
+}
+
+.lib-edit-modal h2 {
+    margin: 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.lib-edit-title {
+    margin: 0;
+    color: rgba(5, 5, 5, 0.68);
+    font-size: 0.84rem;
+}
+
+.lib-edit-modal .stack {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.lib-edit-modal label {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(5, 5, 5, 0.72);
+}
+
+.lib-edit-modal input,
+.lib-edit-modal textarea {
+    border: 0;
+    border-bottom: 1px solid rgba(5, 5, 5, 0.42);
+    background: transparent;
+    color: var(--lib-text);
+    font-family: inherit;
+    padding: 0.42rem 0.2rem;
+}
+
+.lib-edit-modal input:focus,
+.lib-edit-modal textarea:focus {
+    outline: none;
+    border-bottom-color: var(--lib-text);
+}
+
+.lib-edit-modal textarea {
+    min-height: 92px;
+    resize: vertical;
+}
+
+.lib-edit-actions {
+    display: flex;
+    gap: 0.45rem;
+}
+
+.lib-edit-actions button {
+    border: 1px solid var(--lib-text);
+    background: transparent;
+    color: var(--lib-text);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.42rem 0.65rem;
+    cursor: pointer;
+}
+
+.lib-edit-actions button:hover {
+    background: var(--lib-text);
+    color: #fff;
+}
+
+.lib-edit-cancel {
+    border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.lib-edit-error {
+    margin: 0;
+    color: #9f1f1f;
+    font-size: 0.8rem;
+}
+
 /* ---- Mobile ---- */
 
 @media (max-width: 760px) {
@@ -306,11 +505,6 @@
 
     .lib-header {
         flex-direction: column;
-    }
-
-    .lib-header-actions {
-        width: 100%;
-        justify-content: space-between;
     }
 
     .lib-header h1 {
@@ -326,5 +520,13 @@
         flex-direction: column;
         align-items: stretch;
         gap: 0.5rem;
+    }
+
+    .lib-card-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .lib-card-link-btn {
+        grid-column: span 2;
     }
 }

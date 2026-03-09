@@ -1,9 +1,12 @@
 import { createApp } from "./app.js";
 import { config } from "./config.js";
+import { logger } from "./utils/logger.js";
 
 const app = createApp();
 
 app.listen(config.port, () => {
-  console.log(`Backend listening on http://localhost:${config.port}`);
+  logger.info("server.started", {
+    port: config.port,
+    nodeEnv: config.nodeEnv
+  });
 });
-

@@ -1,0 +1,188 @@
+.ui-page-header {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.34);
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ui-page-header-copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.ui-page-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  opacity: 0.62;
+}
+
+.ui-page-title {
+  margin: 0.35rem 0 0;
+  font-size: clamp(2.1rem, 5.2vw, 4.4rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.ui-page-subtitle {
+  margin: 0.55rem 0 0;
+  color: rgba(5, 5, 5, 0.66);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.ui-page-actions {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.ui-breadcrumbs {
+  margin: 0 0 0.2rem;
+}
+
+.ui-breadcrumbs ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.ui-breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(5, 5, 5, 0.72);
+}
+
+.ui-breadcrumbs a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+}
+
+.ui-breadcrumbs a:hover {
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+
+.ui-breadcrumb-sep {
+  opacity: 0.4;
+}
+
+.ui-section-card {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0.95rem 1rem;
+}
+
+.ui-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.65rem;
+}
+
+.ui-section-copy {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.ui-section-copy h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ui-section-copy p {
+  margin: 0;
+  color: rgba(5, 5, 5, 0.62);
+  font-size: 0.82rem;
+}
+
+.ui-section-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ui-state-block {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.42);
+  padding: 1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ui-state-block h3 {
+  margin: 0;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ui-state-block p {
+  margin: 0;
+  color: rgba(5, 5, 5, 0.66);
+  font-size: 0.85rem;
+}
+
+.ui-state-block.ui-state-error {
+  border-color: rgba(176, 33, 33, 0.4);
+}
+
+.ui-state-block.ui-state-error p,
+.ui-state-block.ui-state-error h3 {
+  color: #9f1f1f;
+}
+
+.ui-state-block.ui-state-loading {
+  opacity: 0.84;
+}
+
+.ui-state-action {
+  justify-self: start;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.42rem 0.64rem;
+  cursor: pointer;
+}
+
+.ui-state-action:hover {
+  background: currentColor;
+  color: #fff;
+}
+
+@media (max-width: 760px) {
+  .ui-page-header {
+    padding: 0.8rem;
+    flex-direction: column;
+  }
+
+  .ui-page-actions {
+    width: 100%;
+  }
+
+  .ui-page-title {
+    font-size: clamp(1.8rem, 9.2vw, 2.8rem);
+  }
+}

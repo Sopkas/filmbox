@@ -1,0 +1,19 @@
+{
+  "name": "kinopulse-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "npm run db:up && concurrently -k -n backend,frontend -c red,cyan \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "build": "npm --prefix frontend run build",
+    "lint": "npm --prefix backend run lint && npm --prefix frontend run lint",
+    "format": "npm --prefix backend run format && npm --prefix frontend run format",
+    "format:check": "npm --prefix backend run format:check && npm --prefix frontend run format:check",
+    "check:syntax": "npm --prefix backend run check:syntax",
+    "check:encoding": "node scripts/check-encoding.mjs",
+    "test:integration": "npm --prefix backend run test:integration"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
